@@ -105,26 +105,25 @@ function changeSlide(relativeNum, absoluteNum) {
   const title = destinationTitles[activeSlide];
   const subtitle = destinationSubtitles[activeSlide];
 
-  slides.forEach((slide, index) => {
-    if (!slide.querySelector(".destination__details")) {
-      const detailsContainer = document.createElement("div");
-      detailsContainer.className = "destination__details";
-      slide.appendChild(detailsContainer);
-      
-      const titleElement = document.createElement("p");
-      titleElement.className = "destination__title";
-      detailsContainer.appendChild(titleElement);
-      
-      const subtitleElement = document.createElement("p");
-      subtitleElement.className = "destination__subtitle";
-      detailsContainer.appendChild(subtitleElement);
-    }
-    
-    const titleElement = slide.querySelector(".destination__title");
-    const subtitleElement = slide.querySelector(".destination__subtitle");
-    titleElement.textContent = title;
-    subtitleElement.textContent = subtitle;
-  });
+  const activeSlideElement = slides[activeSlide];
+  if (!activeSlideElement.querySelector(".destination__details")) {
+  const detailsContainer = document.createElement("div");
+  detailsContainer.className = "destination__details";
+  activeSlideElement.appendChild(detailsContainer);
+  
+  const titleElement = document.createElement("p");
+  titleElement.className = "destination__title";
+  detailsContainer.appendChild(titleElement);
+  
+  const subtitleElement = document.createElement("p");
+  subtitleElement.className = "destination__subtitle";
+  detailsContainer.appendChild(subtitleElement);
+  }
+  
+  const titleElement = activeSlideElement.querySelector(".destination__title");
+  const subtitleElement = activeSlideElement.querySelector(".destination__subtitle");
+  titleElement.textContent = destinationTitles[activeSlide];
+  subtitleElement.textContent = destinationSubtitles[activeSlide];
 
   slides[0].style.marginLeft = `${-activeSlide * 100}%`;
 
